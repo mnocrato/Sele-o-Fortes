@@ -1,0 +1,222 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teste Fortes</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
+    <script src="Scripts/jquery.maskMoney.min.js"></script>
+    <script src="Scripts/jquery.jqGrid.min.js"></script>
+    <script src="Scripts/jquery.jqGrid.js"></script>
+    <script src="Scripts/i18n/grid.locale-pt-br.js"></script>
+    <script src="Scripts/jquery-ui-1.10.0.min.js"></script>
+    <script src="Scripts/jquery-ui-1.10.0.js"></script>
+    <link href="Content/jquery.jqGrid/ui.jqgrid.css" rel="stylesheet" />
+    <script src="Scripts/grid/grid.min.js"></script>
+
+    <script src="Scripts/App.js"></script>
+    <link href="CSS/Styles.css" rel="stylesheet" />
+    <script type="text/javascript">
+
+    </script>
+
+</head>
+<body style="width:100%">
+
+    <div id="tabs" style="height:100%">
+        <ul>
+            <li><a href="#tabs-1">Cadastro de Fornecedor e Produto</a></li>
+            <li><a href="#tabs-2">Cadastro de Pedidos</a></li>
+        </ul>
+        <div id="tabs-1" style="height:100%">
+            <div id="accordion1">
+                <h3 id="hFornecedor">Fornecedor</h3>
+                <div id="resize">
+                    <div>
+                        <label>Código do Fornecedor:</label>
+                        <input id="txtIdFornecedor" type="text" disabled />
+                    </div>
+                    <br />
+                    <div>
+                        <label style="padding-left:65px">Razão Social:</label>
+                        <input id="txtRazaoSocial" type="text" />
+                    </div>
+                    <br />
+                    <div>
+                        <label style="padding-left:118px">CNPJ:</label>
+                        <input id="txtCnpj" type="text" />
+                    </div>
+                    <br />
+                    <div>
+                        <label style="padding-left:138px">UF:</label>
+                        <input id="txtUf" type="text" maxlength="2" />
+                    </div>
+                    <br />
+                    <div>
+                        <label style="padding-left:119px">Email:</label>
+                        <input id="txtEmail" type="text" />
+                    </div>
+                    <br />
+                    <div>
+                        <label style="padding-left:19px">Nome para Contato:</label>
+                        <input id="txtNomeContato" type="text" />
+                    </div>
+                    <br />
+                    <br />
+                    <div style="padding-left:160px">
+                        <button id="btnSalvarFornecedor" onclick="salvarAtualizarDeletarFornecedor('Salvar');">Salvar</button>
+                        <button id="btnAtualizarFornecedor" onclick="salvarAtualizarDeletarFornecedor('Atualizar');">Alterar</button>
+                        <button id="btnDeletarFornecedor" onclick="salvarAtualizarDeletarFornecedor('Deletar');">Deletar</button>
+                    </div>
+                    <div>
+                        <button id="btnLimparFornecedor" onclick="limparFornecedor();">Limpar</button>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div>
+                        <table>
+                            <tr>
+                                <td style="padding-top: 20px;">
+                                    <table id="tabelaFornecedores"></table>
+                                    <div id="paginacaoFornecedores">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <h3 id="hProduto">Produto</h3>
+                <div id="resizeProduto">
+                    <br />
+                    <div>
+                        <label>Código do Produto:</label>
+                        <input id="txtIdProduto" type="text" disabled />
+                    </div>
+                    <br />
+                    <div>
+                        <label style="padding-left:62px">Descrição:</label>
+                        <input id="txtDescricao" type="text" />
+                    </div>
+                    <br />
+                    <div>
+                        <label style="padding-left:13px">Valor do Produto:</label>
+                        <input id="txtVlProduto" type="text" />
+                    </div>
+                    <br />
+                    <br />
+                    <div style="padding-left:140px">
+                        <button id="btnSalvarProduto" onclick="salvarAtualizarDeletarProduto('Salvar');">Salvar</button>
+                        <button id="btnAtualizarProduto" onclick="salvarAtualizarDeletarProduto('Atualizar');">Alterar</button>
+                        <button id="btnDeletarProduto" onclick="salvarAtualizarDeletarProduto('Deletar');">Deletar</button>
+                    </div>
+                    <div>
+                        <button id="btnLimparProduto" onclick="limparProduto();">Limpar</button>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div>
+                        <table>
+                            <tr>
+                                <td style="padding-top: 20px;">
+                                    <table id="tabelaProdutos"></table>
+                                    <div id="paginacaoProdutos">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="tabs-2">
+            <div id="accordion2">
+                <h3 id="hPedido">Pedidos</h3>
+                <div id="resizePedido">
+                    <div>
+                        <label style="padding-left:45px">Código do Pedido:</label>
+                        <input id="txtIdPedido" type="text" disabled />
+                    </div>
+                    <br />
+                    <div>
+                        <label style="padding-left:91px">Fornecedor:</label>
+                        <input id="txtIdFornecedorPedido" type="text" hidden="hidden" />
+                        <input id="txtDescricaoFornecedorPedido" type="text" disabled />
+                        <label>(Selecione um Fornecedor na tabela!)</label>
+                    </div>
+                    <br />
+                    <div>
+                        <label style="padding-left:117px">Produto:</label>
+                        <input id="txtIdProdutoPedido" type="text" hidden="hidden" />
+                        <input id="txtDescricaoProdutoPedido" type="text" disabled />
+                        <label>(Selecione um Produto na tabela!)</label>
+                    </div>
+                    <br />
+                    <div>
+                        <label>Quantidade de Produtos:</label>
+                        <input id="txtQtndProduto" onkeyup="validarTotal();" type="text" />
+                    </div>
+                    <br />
+                    <div>
+                        <label style="padding-left:99px">Valor Total:</label>
+                        <input id="txtVlTotal" type="text" disabled />
+                    </div>
+                    <br />
+                    <br />
+                    <div style="padding-left:182px">
+                        <button id="btnSalvarPedido" onclick="salvarAtualizarDeletarPedido('Salvar');">Salvar</button>
+                        <button id="btnAtualizarPedido" onclick="salvarAtualizarDeletarPedido('Atualizar');">Alterar</button>
+                        <button id="btnDeletarPedido" onclick="salvarAtualizarDeletarPedido('Deletar');">Deletar</button>
+                    </div>
+                    <div>
+                        <button id="btnLimparPedido" onclick="limparPedido();">Limpar</button>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <div>
+                        <table>
+                            <tr>
+                                <td style="padding-top: 20px;">
+                                    <table id="tabelaFornecedoresPedidos"></table>
+                                    <div id="paginacaoFornecedoresPedidos">
+                                    </div>
+                                </td>
+                                <td style="padding-top: 20px;">
+                                    <table id="tabelaProdutosPedidos"></table>
+                                    <div id="paginacaoProdutosPedidos">
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div>
+                        <table>
+                            <tr>
+                                <td style="padding-top: 20px;">
+                                    <table id="tabelaPedidos" align="center"></table>
+                                    <div id="paginacaoPedidos">
+                                    </div>
+                                </td>
+                                <td>
+                                    <label>Código do fornecedor:</label>
+                                    <input type="text" id="txtFiltro"/>
+                                    <button id="btnFiltro" onclick="filtrarPedidos();">Filtrar por Fornecedor</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
